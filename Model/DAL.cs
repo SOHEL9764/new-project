@@ -9,7 +9,7 @@ namespace SampleWebApp.Model
         public List<User> GetUsers(IConfiguration _configuration)
         {
             List<User> users = new List<User>();
-            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBCS").ToString()))
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBA").ToString()))
             {
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TblUsers", con);
                 DataTable dt = new DataTable();
@@ -32,7 +32,7 @@ namespace SampleWebApp.Model
         public int AddUser(User user, IConfiguration _configuration)
         {
             int i = 0;
-            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBCS").ToString()))
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBA").ToString()))
             {
                 SqlCommand cmd = new SqlCommand("INSERT INTO TblUsers VALUES('" + user.FirstName + "', '" + user.LastName + "')", con);
                 con.Open();
@@ -45,7 +45,7 @@ namespace SampleWebApp.Model
         public User GetUser(string id, IConfiguration _configuration)
         {
             User user = new User();
-            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBCS").ToString()))
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBA").ToString()))
             {
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM TblUsers WHERE ID = '" + id + "'", con);
                 DataTable dt = new DataTable();
@@ -63,7 +63,7 @@ namespace SampleWebApp.Model
         public int UpdateUser(User user, IConfiguration _configuration)
         {
             int i = 0;
-            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBCS").ToString()))
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBA").ToString()))
             {
                 SqlCommand cmd = new SqlCommand("Update TblUsers SET FirstName = '" + user.FirstName + "', LastName = '" + user.LastName + "' WHERE ID = '" + user.Id + "'", con);
                 con.Open();
@@ -76,7 +76,7 @@ namespace SampleWebApp.Model
         public int DeleteUser(string id, IConfiguration _configuration)
         {   
             int i = 0;
-            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBCS").ToString()))
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("DBA").ToString()))
             {
                 SqlCommand cmd = new SqlCommand("DELETE FROM TblUsers WHERE ID = '" + id + "'", con);
                 con.Open();
